@@ -34,6 +34,7 @@ public class Product {
 
     @ElementCollection
     @CollectionTable(name = "tbl_product_img")
+    @Builder.Default
     private Set<ContentImage> images = new HashSet<ContentImage>();
 
     public void addTag(String tag) {

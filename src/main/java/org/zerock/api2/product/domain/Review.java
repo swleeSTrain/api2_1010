@@ -2,10 +2,7 @@ package org.zerock.api2.product.domain;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +30,8 @@ public class Review {
 
     @ElementCollection
     @CollectionTable(name = "tbl_review_img")
+    @Builder.Default
+    @Getter
     private Set<ContentImage> images = new HashSet<ContentImage>();
 
     //ord번호 번호 겹치는거 방지하기
