@@ -3,6 +3,7 @@ package org.zerock.api2.product.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class Review {
     @CollectionTable(name = "tbl_review_img")
     @Builder.Default
     @Getter
+    @BatchSize(size = 20)
     private Set<ContentImage> images = new HashSet<ContentImage>();
 
     //ord번호 번호 겹치는거 방지하기

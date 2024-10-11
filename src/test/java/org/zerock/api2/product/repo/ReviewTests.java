@@ -19,6 +19,8 @@ import org.zerock.api2.product.repository.ReviewRepository;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.zerock.api2.product.domain.QReview.review;
+
 @Log4j2
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -52,7 +54,7 @@ public class ReviewTests {
                 PageRequest.of(0, 10,
                         Sort.by("rno").descending());
 
-        reviewRepository.listByProduct(15L, pageable);
+        reviewRepository.listByProductQuery(15L, pageable);
 //
 //        result.getContent().forEach(review -> {
 //
@@ -60,6 +62,22 @@ public class ReviewTests {
 //            log.info(review.getImages());
 //            log.info("-----------");
 //        });
+
+    }
+
+    @Test
+    public void testListAllImages() {
+
+        Product product = Product.builder().pno(15L).build();
+        Pageable pageable =
+                PageRequest.of(0, 10,
+                        Sort.by("rno").descending());
+        reviewRepository.findByProduct(product, pageable)
+                .get().forEach(review -> {
+                    log.info(review);
+                    log.info(review.getImages());
+                    log.info("------------");
+                });
 
     }
 }
