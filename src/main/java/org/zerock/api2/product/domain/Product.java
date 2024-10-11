@@ -32,6 +32,10 @@ public class Product {
     @BatchSize(size = 100) // in 조건 자동으로 처리
     private Set<String> tags = new HashSet<>();
 
+    @ElementCollection
+    @CollectionTable(name = "tbl_product_img")
+    private Set<ContentImage> images = new HashSet<ContentImage>();
+
     public void addTag(String tag) {
         tags.add(tag);
     }
