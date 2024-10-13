@@ -17,7 +17,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Product
     @Query("select " +
             "new org.zerock.api2.product.dto.ProductReadDTO(p.pno,p.pname,p.price, p.status)" +
             " from Product  p where p.pno = :pno")
-
     Optional<ProductReadDTO> read(@Param("pno") Long pno);
 
     @EntityGraph(attributePaths = {"tags"})

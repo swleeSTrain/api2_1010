@@ -28,6 +28,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
 
         QProduct product = QProduct.product;
         JPQLQuery<Product> query = from(product);
+
         query.leftJoin(product.tags).fetchJoin();//이거 있으면 Batchsize작동안함
         query.where(product.status.eq(ProductStatus.SALE));
         query.where(product.pno.gt(0L));
